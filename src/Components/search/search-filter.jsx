@@ -37,17 +37,17 @@ function SearchFilter() {
   };
 
   return (
-    <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
-      <div className="flex items-center flex-grow">
-        <SearchIcon className="h-5 w-5 text-gray-400 mr-2" />
-        <input
-          type="text"
-          className="w-full outline-none text-gray-700"
-          placeholder="Search for articles..."
-          // value={searchQuery}
-          // onChange={(e) => setSearchQuery(e.target.value)}
-          {...register("keywords")}
-        />
+    <div className="flex items-center border border-gray-300 rounded-lg pl-1">
+      <div className="flex flex-col flex-grow">
+        <div className="flex items-center flex-grow">
+          <SearchIcon className="h-5 w-5 text-gray-400 mr-2" />
+          <input
+            type="text"
+            className="w-full outline-none text-gray-700"
+            placeholder="Search for articles..."
+            {...register("keywords")}
+          />
+        </div>
         {errors.keywords && (
           <p className="text-red-500 text-sm">{errors.keywords.message}</p>
         )}
@@ -99,8 +99,6 @@ function SearchFilter() {
                       </label>
                       <select
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        // value={selectedSource}
-                        // onChange={(e) => setSelectedSource(e.target.value)}
                         {...register("source")}
                       >
                         <option value="">All</option>
@@ -122,8 +120,6 @@ function SearchFilter() {
                       <input
                         type="date"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        // value={selectedDate}
-                        // onChange={(e) => setSelectedDate(e.target.value)}
                         {...register("date")}
                       />
                       {errors.date && (
