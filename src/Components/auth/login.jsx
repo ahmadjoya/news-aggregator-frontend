@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useCookies } from "react-cookie";
 
 function LoginForm() {
+  const [cookies, setCookie] = useCookies(["auth"]);
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
@@ -25,13 +28,11 @@ function LoginForm() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const token = "your-bearer-token-here";
-      const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
-        data,
-        { headers }
+        "http://127.0.0.1:8000/api/login",
+        data
       );
+      setCookie("auth", response.data, { maxAge: 86400 });
       console.log(response.data);
     } catch (error) {
       console.error(error);

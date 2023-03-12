@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useCookies } from "react-cookie";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -19,6 +21,8 @@ const schema = yup.object().shape({
 
 function SignUpForm() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -30,13 +34,18 @@ function SignUpForm() {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      const response = await axios.post("/api/signup", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       console.log(response.data);
       setIsLoading(false);
+      navigate("/login");
     } catch (error) {
       console.error(error);
       setIsLoading(false);
