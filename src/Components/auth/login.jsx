@@ -30,7 +30,7 @@ function LoginForm() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/login",
+        `${process.env.REACT_APP_BACKEND_API}/login`,
         data
       );
       toast.success("Login Success!");
