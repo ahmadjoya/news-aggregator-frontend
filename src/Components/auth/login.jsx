@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   const [cookies, setCookie] = useCookies(["auth"]);
@@ -32,10 +33,16 @@ function LoginForm() {
         "http://127.0.0.1:8000/api/login",
         data
       );
+      toast.success("Login Success!");
       setCookie("auth", response.data, { maxAge: 86400 });
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      toast.error(
+        error?.response?.data?.message
+          ? error.response.data.message
+          : error.message
+      );
     } finally {
       setIsLoading(false);
     }
@@ -50,9 +57,9 @@ function LoginForm() {
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Or{" "}
-            <a href="#" className="text-blue-600 hover:text-blue-500">
+            <Link to="/register" className="text-blue-600 hover:text-blue-500">
               create a new account
-            </a>
+            </Link>
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>

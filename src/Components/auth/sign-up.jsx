@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -45,10 +46,16 @@ function SignUpForm() {
       );
       console.log(response.data);
       setIsLoading(false);
+      toast.success("Registration Success!");
       navigate("/login");
     } catch (error) {
       console.error(error);
       setIsLoading(false);
+      toast.error(
+        error?.response?.data?.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   };
 
@@ -176,12 +183,12 @@ function SignUpForm() {
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
-                <a
-                  href="#"
+                <Link
+                  to="/login"
                   className="font-medium text-red-600 hover:text-red-500"
                 >
                   Already have an account?
-                </a>
+                </Link>
               </div>
               <button
                 type="submit"
