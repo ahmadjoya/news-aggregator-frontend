@@ -58,7 +58,7 @@ const Header = () => {
                   leaveTo="opacity-0 scale-95"
                 >
                   <div className="absolute z-10 right-0 mt-2 w-48 rounded-md shadow-lg">
-                    {auth.access_token ? (
+                    {auth?.access_token ? (
                       <div className="py-1 rounded-md bg-white shadow-xs">
                         <Link
                           to="/settings"

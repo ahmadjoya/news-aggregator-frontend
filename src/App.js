@@ -8,7 +8,7 @@ import SignUpForm from "./Components/auth/sign-up";
 import Home from "./Components/home";
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["auth"]);
-  const { access_token } = cookies["auth"];
+  const access_token = cookies["auth"]?.access_token;
   return (
     <BrowserRouter>
       <ToastContainer />
