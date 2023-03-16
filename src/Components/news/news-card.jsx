@@ -35,7 +35,9 @@ function NewsCard({ data }) {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-gray-600 text-sm mr-3">{date}</span>
+          <span className="text-gray-600 text-sm mr-3">
+            {new Date(date).toDateString()}
+          </span>
         </div>
         <div className="px-4 pb-4 pt-2">
           <h2 className="text-lg font-semibold mb-2">

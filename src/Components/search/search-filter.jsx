@@ -5,6 +5,7 @@ import { SearchIcon, FilterIcon } from "@heroicons/react/outline";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   keywords: yup.string().required(),
@@ -31,8 +32,10 @@ function SearchFilter() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const navigate = useNavigate();
 
   const handleSearch = (data) => {
+    navigate(`/search?q=${data.keywords}&date=${data.date}`);
     console.log("data", data);
   };
 
@@ -57,7 +60,7 @@ function SearchFilter() {
           {({ open }) => (
             <>
               <div>
-                <Popover.Button className="flex items-center justify-center w-full p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                <Popover.Button className="flex items-center justify-center w-full p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-bg-[#42b58d]">
                   <FilterIcon className="h-5 w-5 text-gray-400" />
                 </Popover.Button>
               </div>
@@ -78,7 +81,7 @@ function SearchFilter() {
                         Category
                       </label>
                       <select
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-bg-[#42b58d] focus:border-bg-[#42b58d] sm:text-sm"
                         {...register("category")}
                       >
                         <option value="">All</option>
@@ -98,7 +101,7 @@ function SearchFilter() {
                         Source
                       </label>
                       <select
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-[#54cfa4] focus:border-[#42b58d] sm:text-sm"
                         {...register("source")}
                       >
                         <option value="">All</option>
@@ -119,7 +122,7 @@ function SearchFilter() {
                       </label>
                       <input
                         type="date"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-[#54cfa4] focus:border-[#54cfa4] sm:text-sm"
                         {...register("date")}
                       />
                       {errors.date && (
@@ -136,7 +139,7 @@ function SearchFilter() {
         </Popover>
       </div>
       <button
-        className="bg-indigo-500 text-white rounded-lg px-4 py-2 ml-2 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+        className="bg-[#42b58d] text-white rounded-lg px-4 py-2 ml-2 hover:bg-[#54cfa4] focus:outline-none focus:bg-[#54cfa4]"
         onClick={handleSubmit(handleSearch)}
       >
         Search

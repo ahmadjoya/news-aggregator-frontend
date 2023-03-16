@@ -6,6 +6,9 @@ import { ToastContainer } from "react-toastify";
 import LoginForm from "./Components/auth/login";
 import SignUpForm from "./Components/auth/sign-up";
 import Home from "./Components/home";
+import Preferences from "./Components/settings/preferences";
+import SearchPage from "./Components/search";
+
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["auth"]);
   const access_token = cookies["auth"]?.access_token;
@@ -24,6 +27,12 @@ function App() {
           path="/register"
           element={access_token ? <Navigate to="/" /> : <SignUpForm />}
         />
+        <Route
+          exact
+          path="/preferences"
+          element={access_token ? <Preferences /> : <Navigate to="/login" />}
+        />
+        <Route exact path="/search" element={<SearchPage />} />
       </Routes>
     </BrowserRouter>
   );
