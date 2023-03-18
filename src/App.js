@@ -8,6 +8,7 @@ import SignUpForm from "./Components/auth/sign-up";
 import Home from "./Components/home";
 import Preferences from "./Components/settings/preferences";
 import SearchPage from "./Components/search";
+import Settings from "./Components/settings";
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["auth"]);
@@ -31,6 +32,11 @@ function App() {
           exact
           path="/preferences"
           element={access_token ? <Preferences /> : <Navigate to="/login" />}
+        />
+        <Route
+          exact
+          path="/settings"
+          element={access_token ? <Settings /> : <Navigate to="/login" />}
         />
         <Route exact path="/search" element={<SearchPage />} />
       </Routes>
