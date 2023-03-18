@@ -96,7 +96,7 @@ const Settings = () => {
 
   return (
     <Layout>
-      <div className="w-full max-w-lg mx-auto mt-5 border p-4 border-gray-200 rounded-2xl">
+      <div className="w-full max-w-lg mx-auto border p-4 border-gray-200 rounded-2xl mt-10">
         <div className="mb-6">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
             Email
@@ -148,7 +148,7 @@ const Settings = () => {
           Update Email
         </button>
       </div>
-      <div className="w-full max-w-lg mx-auto mt-5 border p-4 border-gray-200 rounded-2xl">
+      <div className="w-full max-w-lg mx-auto mb-10 border p-4 border-gray-200 rounded-2xl">
         <div className="mb-4">
           <label
             className="block text-gray-700 font-bold mb-2"

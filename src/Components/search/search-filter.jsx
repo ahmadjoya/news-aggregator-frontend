@@ -35,7 +35,7 @@ function SearchFilter() {
   const navigate = useNavigate();
 
   const handleSearch = (data) => {
-    navigate(`/search?q=${data.keywords}&date=${data.date}`);
+    navigate(`/search?q=${data.keywords}&date=${data.date ? data.date : ""}`);
     console.log("data", data);
   };
 
