@@ -12,7 +12,6 @@ function NewsCard({ data }) {
     author,
     sourceLink,
   } = data;
-  console.log("data", image);
 
   return (
     <Link to={sourceLink} target="_blank">

@@ -43,7 +43,6 @@ const Settings = () => {
   });
   const auth = cookies["auth"];
   const onSubmitEmail = async (data) => {
-    console.log("Email:", data.email); // do something with email data
     setEmailLoading(true);
     try {
       const response = await axios.post(
@@ -52,7 +51,6 @@ const Settings = () => {
         { headers: { Authorization: `Bearer ${auth?.access_token}` } }
       );
       toast.success("Email Update Success!");
-      console.log(response.data);
     } catch (error) {
       console.error(error);
       toast.error(
@@ -66,14 +64,8 @@ const Settings = () => {
   };
 
   const onSubmitPassword = async (data) => {
-    console.log(
-      "Password:",
-      data.currentPassword,
-      data.newPassword,
-      data.confirmPassword
-    ); // do something with password data
-
     setPasswordLoading(true);
+
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_API}/update-user-password`,
