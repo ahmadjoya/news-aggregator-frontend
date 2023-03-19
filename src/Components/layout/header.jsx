@@ -118,7 +118,7 @@ const Header = () => {
       {isMenuOpen ? (
         <div className="sm:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {auth.access_token ? (
+            {auth?.access_token ? (
               <>
                 <Link
                   to="/settings"

@@ -15,7 +15,7 @@ const NewsPanel = ({ data, loading }) => {
         ) : (
           <div className="flex flex-wrap mt-2">
             {data.map((item) => (
-              <div className="p-1 w-1/3">
+              <div className="p-1 w-full md:w-1/3">
                 <NewsCard data={item} />
               </div>
             ))}
